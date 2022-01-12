@@ -1,0 +1,78 @@
+plugins {
+    id 'groovy'
+    id 'java'
+    id 'java-gradle-plugin'
+    id 'com.gradle.plugin-publish' version '0.19.0'
+}
+
+group 'com.emthom'
+version '1.0.0.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    test {
+        java {
+            srcDirs = ['src/test/java']
+        }
+    }
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'org.codehaus.groovy:groovy-all:2.5.4'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.5'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'org.eclipse.jgit', name: 'org.eclipse.jgit', version: '5.6.0.201912101111-r'
+}
+
+// Unit Tests:
+test {
+    useJUnit()
+    maxHeapSize = '1G'
+}
+
+apply plugin: 'maven'
+
+pluginBundle {
+    website = 'https://github.com/duccuideptrai/gmaeni'
+    vcsUrl = 'https://github.com/duccuideptrai/gmaeni'
+    tags = ['obfuscation', 'obfuscator', 'encryption', 'string-encryption', 'security']
+    mavenCoordinates {
+        groupId = "com.emthom"
+        artifactId = "gmaeni"
+        version = "1.0.0.0"
+    }
+}
+
+/**
+ * Publish on gradle.org
+ * $ ./gradlew publishPlugins
+ */
+gradlePlugin {
+    //noinspection GroovyAssignabilityCheck
+    plugins {
+        enigmaPlugin {
+            id = 'com.emthom.gmaeni'
+            displayName = 'Gmaeni Plugin'
+            description = '難読可アンドロイドコード'
+            implementationClass = 'com.emthom.gmaeni.EnigmaPlugin'
+        }
+    }
+}
+
+/**
+ * Local Maven repository (for testing purpose)
+ */
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('repo'))
+        }
+    }
+}
