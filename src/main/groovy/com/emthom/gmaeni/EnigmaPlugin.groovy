@@ -1,6 +1,6 @@
 package com.emthom.gmaeni
 
-
+import com.android.build.gradle.api.ApplicationVariant
 import com.emthom.gmaeni.tasks.CleanBackupTask
 import com.emthom.gmaeni.tasks.EnigmaTask
 import com.emthom.gmaeni.tasks.RestoreTask
@@ -8,6 +8,7 @@ import com.emthom.gmaeni.utils.TextUtils
 import com.emthom.gmaeni.utils.Utils
 import com.emthom.gmaeni.tasks.BackupTask
 import com.emthom.gmaeni.tasks.InjectCodeTask
+import com.android.build.gradle.AppExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -18,16 +19,20 @@ class EnigmaPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-
         // https://docs.gradle.org/current/userguide/custom_plugins.html
         def extension = project.extensions.create('gmaeni', EnigmaPluginExtension)
+        def android = project.extensions.findByType(AppExtension)
+
+        if (!android) {
+            throw new Exception(
+                    "Not an Android application; did you forget `apply plugin: 'com.android.application`?")
+        }
 
         // Generate random hash key, if not defined
         if (TextUtils.isEmpty(extension.hash))
             extension.hash = Utils.randomHashKey()
 
         project.afterEvaluate {
-
             // Search custom Encryption task:
             def customEncryptTask = null
             if (extension.encryptionTaskName != null) {
@@ -81,19 +86,24 @@ class EnigmaPlugin implements Plugin<Project> {
             }
 
             project.tasks.getByName('clean').dependsOn('cleanBackup')
+            android.applicationVariants.all { ApplicationVariant variant ->
+                def variantName = capitalize(variant.name)
+                if (variant.buildType.minifyEnabled) {
 
-            project.tasks.getByName('preBuild').dependsOn('backup')
-            project.tasks.getByName('preBuild').dependsOn('injectCode')
-            project.tasks.getByName('preBuild').dependsOn('encrypt')
+                    project.tasks.getByName("pre${variantName}Build").dependsOn('backup')
+                    project.tasks.getByName("pre${variantName}Build").dependsOn('injectCode')
+                    project.tasks.getByName("pre${variantName}Build").dependsOn('encrypt')
 
-            for (task in project.tasks) {
-                if ((task.name.startsWith('assemble') || task.name.startsWith('bundle'))
-                        && (task.name.endsWith('Release') || task.name.endsWith('Debug')
-                                || task.name.endsWith('Stg') || task.name.endsWith('Security')))
-                    task.finalizedBy('restore')
-                if (task.name.startsWith('generate') && task.name.endsWith('Sources'))
-                    task.finalizedBy('restore')
+                    for (task in project.tasks) {
+                        if ((task.name.startsWith('assemble') || task.name.startsWith('bundle'))
+                                && task.name.endsWith(variantName))
+                            task.finalizedBy('restore')
+                    }
+                }
             }
         }
+    }
+    static String capitalize(String str) {
+        return str.substring(0, 1).toUpperCase() + str.substring(1)
     }
 }
