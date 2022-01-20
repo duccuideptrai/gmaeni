@@ -5,7 +5,7 @@ plugins {
     id 'com.gradle.plugin-publish' version '0.19.0'
 }
 
-group 'com.github.duccuideptrai'
+group 'io.github.duccuideptrai'
 version '1.0.0.0'
 
 sourceCompatibility = 1.8
@@ -46,7 +46,7 @@ pluginBundle {
     vcsUrl = 'https://github.com/duccuideptrai/gmaeni'
     tags = ['security']
     mavenCoordinates {
-        groupId = "com.github.duccuideptrai"
+        groupId = "io.github.duccuideptrai"
         artifactId = "gmaeni"
         version = "1.0.0.0"
     }
@@ -60,7 +60,7 @@ gradlePlugin {
     //noinspection GroovyAssignabilityCheck
     plugins {
         gmaeniPlugin {
-            id = 'com.github.duccuideptrai.gmaeni'
+            id = 'io.github.duccuideptrai.gmaeni'
             displayName = 'Gmaeni Plugin'
             description = 'Android Gradle plugin providing obfuscator string for minifyEnable build variants'
             implementationClass = 'com.emthom.gmaeni.GmaeniPlugin'

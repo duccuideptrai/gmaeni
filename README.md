@@ -12,7 +12,7 @@ build.gradle (app)
 apply plugin: 'com.android.application'
 
 // Add Gmaeni Plugin
-apply plugin: 'com.github.duccuideptrai.gmaeni'
+apply plugin: 'io.github.duccuideptrai.gmaeni'
 
 // Set Gmaeni options:
 gmaeni.enabled = true
