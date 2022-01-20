@@ -2,7 +2,7 @@
 <project name="gmaeni" default="all">
   
   
-  <property file="enigma.properties"/>
+  <property file="gmaeni.properties"/>
   <!-- Uncomment the following property if no tests compilation is needed -->
   <!-- 
   <property name="skip.tests" value="true"/>
@@ -126,19 +126,19 @@
   
   <!-- Modules -->
   
-  <import file="${basedir}/.idea/modules/module_enigma.xml"/>
+  <import file="${basedir}/.idea/modules/module_gmaeni.xml"/>
   
-  <import file="${basedir}/.idea/modules/module_enigma.main.xml"/>
+  <import file="${basedir}/.idea/modules/module_gmaeni.main.xml"/>
   
-  <import file="${basedir}/.idea/modules/module_enigma.test.xml"/>
+  <import file="${basedir}/.idea/modules/module_gmaeni.test.xml"/>
   
   <target name="init" description="Build initialization">
     <!-- Perform any build initialization in this target -->
   </target>
   
-  <target name="clean" depends="clean.module.enigma, clean.module.enigma.main, clean.module.enigma.test" description="cleanup all"/>
+  <target name="clean" depends="clean.module.gmaeni, clean.module.gmaeni.main, clean.module.gmaeni.test" description="cleanup all"/>
   
-  <target name="build.modules" depends="init, clean, compile.module.enigma, compile.module.enigma.main, compile.module.enigma.test" description="build all modules"/>
+  <target name="build.modules" depends="init, clean, compile.module.gmaeni, compile.module.gmaeni.main, compile.module.gmaeni.test" description="build all modules"/>
   
   <target name="all" depends="build.modules" description="build all"/>
 </project>

@@ -1,11 +1,11 @@
 package com.emthom.gmaeni
 
 /**
- * Enigma Gradle Plugin Options
+ * Gmaeni Gradle Plugin Options
  */
-class EnigmaPluginExtension {
+class GmaeniluginExtension {
     /**
-     * Enable or disable the Enigma Plugin
+     * Enable or disable the Gmaeni Plugin
      */
     boolean enabled = true;
     /**

@@ -481,7 +481,7 @@ public class JavaCode {
                 String value = cs.value.substring(1, cs.value.length() - 1);
                 String encrypted = encryptString(value, key, functionName, null);
 
-                // Inject the Enigma signature function:
+                // Inject the Gmaeni signature function:
                 StringBuilder builder = new StringBuilder();
                 builder.append(block.code, 0, bStart + stringOffset);
                 builder.append(encrypted);
@@ -502,12 +502,12 @@ public class JavaCode {
     }
 
     /**
-     * Encrypt a string value, to Enigma ciphering style
+     * Encrypt a string value, to Gmaeni ciphering style
      * @param value String value to encrypt
      * @param key Secrete key encryption
      * @param functionName Name of the decryption method
      * @param encryptTask Optional external decryption Task name (not yet implemented)
-     * @return String value encrypted with Enigma ciphering style
+     * @return String value encrypted with Gmaeni ciphering style
      * @throws Exception Encryption error
      */
     private String encryptString(String value, String key, String functionName, DefaultTask encryptTask) throws Exception {

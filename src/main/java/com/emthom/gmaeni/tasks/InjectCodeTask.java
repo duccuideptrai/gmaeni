@@ -9,13 +9,13 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Gradle Task to inject Enigma source code.
+ * Gradle Task to inject gmaeni source code.
  */
 public class InjectCodeTask extends AbstractTask {
 
     public static final String PACKAGE_NAME = "com.emthom.gmaeni";
-    public static final String CLASS_NAME = "EnigmaUtils";
-    public static final String FUNCTION_NAME = InjectCodeTask.CLASS_NAME + ".enigmatization";
+    public static final String CLASS_NAME = "GmaeniUtils";
+    public static final String FUNCTION_NAME = InjectCodeTask.CLASS_NAME + ".gmaenitization";
     public static final String IMPORT_NAME = "import " + InjectCodeTask.PACKAGE_NAME + "." + InjectCodeTask.CLASS_NAME + ";";
 
     public static final String SOURCE_CODE = "package " + PACKAGE_NAME + ";\n" +
@@ -27,7 +27,7 @@ public class InjectCodeTask extends AbstractTask {
             "\n" +
             "public class " + CLASS_NAME + " {\n" +
             "   private final static int[] data = {0, 0};\n" +
-            "   public static String enigmatization(byte[] enc) {\n" +
+            "   public static String gmaenitization(byte[] enc) {\n" +
             "        try {\n" +
             "            byte[] keyValue  = keyToBytes(data);\n" +
             "            byte[] result = decrypt(keyValue, enc);\n" +
@@ -72,7 +72,7 @@ public class InjectCodeTask extends AbstractTask {
         if (!TextUtils.isEmpty(customFunction)) return;
 
         if (TextUtils.isEmpty(this.hash)) {
-            System.out.println("⚠️ Missing Hash value to inject Enigma code");
+            System.out.println("⚠️ Missing Hash value to inject Gmaeni code");
             return;
         }
         File packageName = new File(pathSrc + File.separator + PACKAGE_NAME.replace(".",  File.separator));
@@ -82,7 +82,7 @@ public class InjectCodeTask extends AbstractTask {
         String data = encodeHash(SOURCE_CODE);
         FileUtils.writeStringToFile(codeFile, data, "UTF-8");
 
-        System.out.println("✏️ Add Enigma code");
+        System.out.println("✏️ Add Gmaeni code");
     }
 
     private String encodeHash(String source) {

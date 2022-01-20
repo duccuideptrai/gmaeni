@@ -2,7 +2,7 @@ package com.emthom.gmaeni
 
 import com.android.build.gradle.api.ApplicationVariant
 import com.emthom.gmaeni.tasks.CleanBackupTask
-import com.emthom.gmaeni.tasks.EnigmaTask
+import com.emthom.gmaeni.tasks.GmaeniTask
 import com.emthom.gmaeni.tasks.RestoreTask
 import com.emthom.gmaeni.utils.TextUtils
 import com.emthom.gmaeni.utils.Utils
@@ -15,12 +15,12 @@ import org.gradle.api.Project
 /**
  * Gmaeni Gradle Plugin
  */
-class EnigmaPlugin implements Plugin<Project> {
+class GmaeniPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
         // https://docs.gradle.org/current/userguide/custom_plugins.html
-        def extension = project.extensions.create('gmaeni', EnigmaPluginExtension)
+        def extension = project.extensions.create('gmaeni', GmaeniPluginExtension)
         def android = project.extensions.findByType(AppExtension)
 
         if (!android) {
@@ -65,7 +65,7 @@ class EnigmaPlugin implements Plugin<Project> {
                 debug = extension.debug
             }
 
-            project.task('encrypt', type: EnigmaTask) {
+            project.task('encrypt', type: GmaeniTask) {
                 enabled = extension.enabled
                 rootProject = project.rootDir.absolutePath
                 pathSrc = project.rootDir.absolutePath + extension.srcJava

@@ -15,7 +15,7 @@ import java.io.File;
 /**
  * Gradle Task to parse JAVA source code and encrypt string values.
  */
-public class EnigmaTask extends AbstractTask {
+public class GmaeniTask extends AbstractTask {
 
     public String hash;
     public String[] ignoredClasses = null;
@@ -25,7 +25,7 @@ public class EnigmaTask extends AbstractTask {
     public boolean injectFakeKeys = true;
 
     @Inject
-    public EnigmaTask() {
+    public GmaeniTask() {
         super();
     }
 
@@ -38,7 +38,7 @@ public class EnigmaTask extends AbstractTask {
             System.out.println("⚠️ Missing Hash value to encrypt files (or Custom Encryption Task)");
             return;
         } else if (!TextUtils.isEmpty(this.hash) && this.hash.length() < AESUtils.MIN_KEY_SIZE) {
-            System.out.println("⚠️ The secrete 'com.chrisney.enigma.hash' must at least contains " + AESUtils.MIN_KEY_SIZE + " characters!");
+            System.out.println("⚠️ The secrete 'com.emthom.gmaeni.hash' must at least contains " + AESUtils.MIN_KEY_SIZE + " characters!");
             return;
         }
 
@@ -85,8 +85,8 @@ public class EnigmaTask extends AbstractTask {
 
     private void encryptJavaFile(File srcFile) throws Exception {
 
-        if (isEnigmaFile(srcFile)) return;
-        if (isEnigmatized(srcFile)) {
+        if (isGmaeniFile(srcFile)) return;
+        if (isGmaenitized(srcFile)) {
             System.out.println("⚠️ Cannot process a file already encrypted: " + srcFile);
             return;
         }

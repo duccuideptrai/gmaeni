@@ -41,7 +41,7 @@ public class UnitTests {
     }
 
     @Test
-    public void testEnigmatization() throws Exception {
+    public void testGmaenitization() throws Exception {
 
         File javaFile = Utils.getFileResource("Utils.java");
         String originalCode = FileUtils.readFileToString(javaFile, "UTF-8");
@@ -65,13 +65,13 @@ public class UnitTests {
 
     @Test
     public void testImportParser() {
-        String code = "\nimport com.chrisney.enigma.parser.JavaParser;";
+        String code = "\nimport com.emthom.gmaeni.parser.JavaParser;";
         JavaParser javaParser = new JavaParser();
         JavaCode javaCode = javaParser.parse(code);
         CodeBlock blockImport = javaCode.getAllBlocks().get(0);
 
         Assert.assertEquals(blockImport.type, CodeBlock.BlockType.Import);
-        Assert.assertEquals(blockImport.name, "com.chrisney.enigma.parser.JavaParser");
+        Assert.assertEquals(blockImport.name, "com.emthom.gmaeni.parser.JavaParser");
     }
 
     @Test

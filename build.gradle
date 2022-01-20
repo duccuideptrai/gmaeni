@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'com.emthom'
-version '1.0.0.0'
+version '1.0.0.1'
 
 sourceCompatibility = 1.8
 
@@ -48,7 +48,7 @@ pluginBundle {
     mavenCoordinates {
         groupId = "com.emthom"
         artifactId = "gmaeni"
-        version = "1.0.0.0"
+        version = "1.0.0.1"
     }
 }
 
@@ -59,11 +59,11 @@ pluginBundle {
 gradlePlugin {
     //noinspection GroovyAssignabilityCheck
     plugins {
-        enigmaPlugin {
+        gmaeniPlugin {
             id = 'com.emthom.gmaeni'
             displayName = 'Gmaeni Plugin'
-            description = '難読可アンドロイドコード'
-            implementationClass = 'com.emthom.gmaeni.EnigmaPlugin'
+            description = 'Android Gradle plugin providing obfuscator string for minifyEnable build variants'
+            implementationClass = 'com.emthom.gmaeni.GmaeniPlugin'
         }
     }
 }
@@ -74,7 +74,7 @@ gradlePlugin {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: uri('/Users/duc_hoangminh/AndroidStudioProjects/eigacom_android/maven'))
+            repository(url: uri('repo'))
         }
     }
 }

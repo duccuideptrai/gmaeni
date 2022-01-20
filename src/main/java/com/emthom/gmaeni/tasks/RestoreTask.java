@@ -29,21 +29,21 @@ public class RestoreTask extends AbstractTask {
         } else {
             System.out.println("⚠️ There is no backup to restore!");
         }
-        removeEnigmaCode();
+        removeGmaeniCode();
     }
 
-    private void removeEnigmaCode() throws IOException {
+    private void removeGmaeniCode() throws IOException {
         File codePackage = new File(pathSrc + File.separator + InjectCodeTask.PACKAGE_NAME.replace(".", File.separator));
         FileUtils.deleteDirectory(codePackage);
-        System.out.println("\uD83E\uDDF9 Remove Enigma code: " + codePackage.getAbsolutePath());
+        System.out.println("\uD83E\uDDF9 Remove Gmaeni code: " + codePackage.getAbsolutePath());
     }
 
     private void restoreFile(File file) throws IOException {
 
         String srcFile = file.getAbsolutePath().replace(rootProject, "");
-        if (isEnigmaFile(file)) return;
+        if (isGmaeniFile(file)) return;
 
-        if (isEnigmatized(file)) {
+        if (isGmaenitized(file)) {
             File backup = new File(backupDir() + srcFile);
             if (backup.exists() && backup.length() > 0) {
                 FileUtils.copyFile(backup, file);

@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Gradle Task to backup original source code, before Enigma code injection.
+ * Gradle Task to backup original source code, before Gmaeni code injection.
  */
 public class BackupTask extends AbstractTask {
 
@@ -35,9 +35,9 @@ public class BackupTask extends AbstractTask {
      */
     private void backupFile(File file) throws IOException {
         String srcFile = file.getAbsolutePath().replace(rootProject, "");
-        if (isEnigmaFile(file)) return;
+        if (isGmaeniFile(file)) return;
 
-        if (!isEnigmatized(file) && file.length() > 0) {
+        if (!isGmaenitized(file) && file.length() > 0) {
             File backup = new File(backupDir() + srcFile);
             FileUtils.copyFile(file, backup);
             System.out.println("\uD83D\uDCBE Backup: " + srcFile);

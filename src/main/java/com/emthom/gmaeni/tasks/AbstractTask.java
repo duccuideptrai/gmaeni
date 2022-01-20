@@ -10,11 +10,11 @@ import java.io.IOException;
 import java.util.Collection;
 
 /**
- * Abstract Enigma Gradle Task
+ * Abstract Gmaeni Gradle Task
  */
 public class AbstractTask extends DefaultTask {
 
-    private static final String BACKUP_DIR = "enigma-backup";
+    private static final String BACKUP_DIR = "gmaeni-backup";
     private static final String SVN_FOLDER = ".svn";
     private static final String MERCURIAL_FOLDER = ".hg";
     private static final String GIT_FOLDER = ".git";
@@ -57,7 +57,7 @@ public class AbstractTask extends DefaultTask {
     protected boolean checkSCM() {
         boolean result = hasGit() || hasSubversion() || hasMercurial();
         if (!result) {
-            System.out.println("⚠️ The project has no Source Code Management. Please setup one (Git, SVN, Mercurial) before use Enigma plugin!");
+            System.out.println("⚠️ The project has no Source Code Management. Please setup one (Git, SVN, Mercurial) before use Gmaeni plugin!");
         }
         return result;
     }
@@ -129,20 +129,20 @@ public class AbstractTask extends DefaultTask {
     }
 
     /**
-     * Check if file if Enigma file
+     * Check if file if Gmaeni file
      * @param srcFile JAVA file to test
-     * @return True if file is com.chrisney.enigma file
+     * @return True if file is com.emthom.gmaeni file
      */
-    protected boolean isEnigmaFile(File srcFile) {
+    protected boolean isGmaeniFile(File srcFile) {
         return srcFile.getName().endsWith(InjectCodeTask.CLASS_NAME + ".java");
     }
     /**
-     * Check if the JAVA file contains Enigma code
+     * Check if the JAVA file contains Gmaeni code
      * @param srcFile JAVA file to test
      * @throws IOException If an I/O exception
-     * @return True if the file contains Enigma code
+     * @return True if the file contains Gmaeni code
      */
-    protected boolean isEnigmatized(File srcFile) throws IOException {
+    protected boolean isGmaenitized(File srcFile) throws IOException {
         String contents = FileUtils.readFileToString(srcFile, "UTF-8");
         return contents.contains(InjectCodeTask.IMPORT_NAME) || contents.contains(InjectCodeTask.FUNCTION_NAME);
     }
