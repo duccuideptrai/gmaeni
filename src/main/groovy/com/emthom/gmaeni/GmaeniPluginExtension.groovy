@@ -3,7 +3,7 @@ package com.emthom.gmaeni
 /**
  * Gmaeni Gradle Plugin Options
  */
-class GmaeniluginExtension {
+class GmaeniPluginExtension {
     /**
      * Enable or disable the Gmaeni Plugin
      */

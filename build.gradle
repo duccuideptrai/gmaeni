@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'io.github.duccuideptrai'
-version '1.0.0.0'
+version '1.0.0.1'
 
 sourceCompatibility = 1.8
 
@@ -48,7 +48,7 @@ pluginBundle {
     mavenCoordinates {
         groupId = "io.github.duccuideptrai"
         artifactId = "gmaeni"
-        version = "1.0.0.0"
+        version = "1.0.0.1"
     }
 }
 
